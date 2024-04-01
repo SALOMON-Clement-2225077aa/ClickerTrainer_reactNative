@@ -1,15 +1,31 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import styles from './assets/styles';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import MainPageView from './components/view/MainPageView';
+import StatsPageView from './components/view/StatsPageView';
 
-export default function App() {
-  return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Open up App.js to start working on your app!</Text>
-        <Text style={styles.text}>Hey! It's working :)</Text>
+const App = () => {
+    const [currentPage, setCurrentPage] = useState('main');
 
-        <StatusBar style="auto" />
-      </View>
-  );
-}
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    const renderPage = () => {
+        switch (currentPage) {
+            case 'main':
+                return <MainPageView onPageChange={handlePageChange} />;
+            case 'stats':
+                return <StatsPageView onPageChange={handlePageChange} />;
+            default:
+                return <MainPageView onPageChange={handlePageChange} />;
+        }
+    };
+
+    return (
+        <View style={{ flex: 1 }}>
+            {renderPage()}
+        </View>
+    );
+};
+
+export default App;
