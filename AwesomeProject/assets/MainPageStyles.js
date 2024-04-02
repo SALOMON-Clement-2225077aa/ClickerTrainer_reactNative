@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import styles from './styles';
 
 const MainPageStyles = StyleSheet.create({
     container: {
