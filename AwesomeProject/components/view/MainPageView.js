@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
-import styles from '../../assets/stylesheets/MainPageStyles';
-import caouete from '../../assets/caouete.png';
+import { gameEndedEvent } from '../controller/MainPageController';
 import Footer from './Footer';
+
+import styles from '../../assets/stylesheets/MainPageStyles';
+import ImgCaouete from '../../assets/caouete.png';
 
 const MainPageView = ({ onPageChange }) => {
     const [nbOfClicks, setNbOfClicks] = useState(0);
@@ -39,12 +41,7 @@ const MainPageView = ({ onPageChange }) => {
             }, 10);
         }
         if(timeRemaining <= 0) {
-            console.log('-----------');
-            console.log(chosenTime);
-            console.log(nbOfClicks);
-            console.log("CPS = ", nbOfClicks/chosenTime);
-            console.log(remainingTimes);
-            console.log('-----------');
+            gameEndedEvent(chosenTime, nbOfClicks, remainingTimes);
             setTimeRemaining(chosenTime * 1000);
             setTimerStarted(false);
             setNbOfClicks(0);
@@ -76,7 +73,7 @@ const MainPageView = ({ onPageChange }) => {
             <Text style={styles.text}>Temps restant : {formatTime(timeRemaining)}s</Text>
             <TouchableOpacity onPress={handleButtonClick}>
                 <Image
-                    source={caouete}
+                    source={ImgCaouete}
                     style={{ width: 200, height: 200 }} // taille de la caouete :3
                 />
             </TouchableOpacity>
