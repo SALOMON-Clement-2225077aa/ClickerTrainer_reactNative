@@ -6,10 +6,10 @@ const Footer = ({ onPageChange, activePage }) => { // Pass onPageChange as prop
     return (
         <View style={styles.footer}>
             <TouchableOpacity onPress={() => onPageChange('main')} style={styles.icon}>
-                <Ionicons name="home" size={30} color={activePage === 'main' ? 'white' : 'gray'} />
+                <Ionicons name="home" size={30} color={activePage === 'main' ? '#00bf63' : 'gray'} />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => onPageChange('stats')} style={styles.icon}>
-                <Ionicons name="stats-chart-outline" size={30} color={activePage === 'stats' ? 'white' : 'gray'}  />
+                <Ionicons name="stats-chart-outline" size={30} color={activePage === 'stats' ? '#00bf63' : 'gray'}  />
             </TouchableOpacity>
         </View>
     );

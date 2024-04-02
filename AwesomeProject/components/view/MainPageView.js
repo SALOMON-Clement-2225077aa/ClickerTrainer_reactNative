@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Footer from './Footer';
 import styles from '../../assets/MainPageStyles';
+import RNPickerSelect from 'react-native-picker-select';
 
 const MainPageView = ({ onPageChange }) => {
     const [nbOfClicks, setNbOfClicks] = useState(0);
@@ -18,7 +19,7 @@ const MainPageView = ({ onPageChange }) => {
         }
     };
 
-    // Gestion du chrono :
+    // Gestion du Timer :
     const formatTime = (milliseconds) => {
         const totalSeconds = milliseconds / 1000;
         const seconds = Math.floor(totalSeconds);
@@ -26,18 +27,33 @@ const MainPageView = ({ onPageChange }) => {
         return `${seconds.toString().padStart(2, '0')}.${millisecondsRemaining.toString().padStart(3, '0')}`;
     };
     useEffect(() => {
-        let timer;
+        let interval;
         if (timerStarted) {
-            timer = setInterval(() => {
+            interval = setInterval(() => {
                 setTimeRemaining(prevTime => (prevTime > 0 ? prevTime - 17 : 0));
             }, 10);
         }
-        return () => clearInterval(timer);
+        return () => clearInterval(interval);
     }, [timerStarted]);
 
-    // Affichage :
+    // Gestion de la sélection de temps :
+    const handleTimeSelection = (value) => {
+        setTimeRemaining(value * 1000);
+        setTimerStarted(false);
+        setNbOfClicks(0);
+    };
+
     return (
         <View style={styles.container}>
+            <RNPickerSelect
+                onValueChange={(value) => handleTimeSelection(value)}
+                items={[
+                    { label: '5 sec', value: 5 },
+                    { label: '10 sec', value: 10 },
+                    { label: '30 sec', value: 30 },
+                    { label: '60 sec', value: 60 },
+                ]}
+            />
             <Text style={styles.text}>Temps restant : {formatTime(timeRemaining)}s</Text>
             <TouchableOpacity style={styles.circle} onPress={handleButtonClick}>
                 <Text style={styles.clickText}>Click</Text>
