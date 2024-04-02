@@ -24,6 +24,14 @@ const MainPageView = ({ onPageChange }) => {
             setNbOfClicks(nbOfClicks + 1);
             setRemainingTimes([...remainingTimes, timeRemaining]);
         }
+        if(timeRemaining <= 0) {
+            gameEndedEvent(chosenTime, nbOfClicks, remainingTimes);
+            onPageChange('stats');
+            setTimeRemaining(chosenTime * 1000);
+            setTimerStarted(false);
+            setNbOfClicks(0);
+            setRemainingTimes([]);
+        }
     };
 
     // Gestion du Timer :
@@ -39,13 +47,6 @@ const MainPageView = ({ onPageChange }) => {
             interval = setInterval(() => {
                 setTimeRemaining(prevTime => (prevTime > 0 ? prevTime - 17 : 0));
             }, 10);
-        }
-        if(timeRemaining <= 0) {
-            gameEndedEvent(chosenTime, nbOfClicks, remainingTimes);
-            setTimeRemaining(chosenTime * 1000);
-            setTimerStarted(false);
-            setNbOfClicks(0);
-            setRemainingTimes([]);
         }
         return () => clearInterval(interval);
     }, [timerStarted]);

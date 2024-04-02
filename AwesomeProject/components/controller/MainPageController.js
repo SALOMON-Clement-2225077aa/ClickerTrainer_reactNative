@@ -4,7 +4,7 @@ import StatsModel from '../../model/StatsModel'; // Import the StatsModel
 export const gameEndedEvent = (chosenTime, nbOfClicks, remainingTimes) => {
 
     // Calcul du CPS
-    const cps = nbOfClicks / chosenTime;
+    const cps = (nbOfClicks / chosenTime).toFixed(2);
 
     // Transformation de la liste remainingTimes en liste d'intervalles
     let intervals = [];
@@ -47,11 +47,12 @@ const updateStats = (chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgI
     const nbOfGames = globalStats.nbOfGames + 1;
     const totalClicks = globalStats.totalClicks + nbOfClicks;
     const cpsHistory = [...globalStats.cpsHistory, cps];
-    const avgCps = globalStats.cpsHistory.reduce((total, cps) => total + cps, 0) / cpsHistory.length;
+    const avgCps = (cpsHistory.reduce((total, cps) => total + cps, 0) / cpsHistory.length).toFixed(2);
     const bestCps = Math.max(...cpsHistory);
-    const avgIntervalHistory = [...globalStats.avgIntervalHistory, avgInterval];
-    const avgTotalInterval = avgIntervalHistory.reduce((acc, val) => acc + val, 0) / avgIntervalHistory.length;
+    const avgIntervalHistory = [...globalStats.avgIntervalHistory, parseFloat(avgInterval)];
+    const avgTotalInterval = (avgIntervalHistory.reduce((acc, val) => acc + val, 0) / avgIntervalHistory.length).toFixed(2);
     const minTotalInterval = Math.min(...intervals);
+
     StatsModel.updateGlobalStats(nbOfGames, totalClicks, cpsHistory,
         avgCps, bestCps, avgIntervalHistory, avgTotalInterval, minTotalInterval);
 };
