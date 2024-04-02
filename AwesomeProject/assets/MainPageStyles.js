@@ -12,6 +12,8 @@ const MainPageStyles = StyleSheet.create({
         fontWeight: 'bold',
         fontStyle: 'Roboto',
         color: 'white',
+        paddingTop: 50,
+        paddingBottom: 50,
     },
     circle: {
         width: 200,

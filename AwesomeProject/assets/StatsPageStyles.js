@@ -1,4 +1,3 @@
-// StatsPageStyles.js
 import { StyleSheet } from 'react-native';
 
 const StatsPageStyles = StyleSheet.create({

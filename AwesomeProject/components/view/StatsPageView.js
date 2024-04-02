@@ -1,8 +1,7 @@
-// StatsPageView.js
 import React from 'react';
 import { View, Text } from 'react-native';
 import Footer from './Footer';
-import StatsPageStyles from '../../assets/StatsPageStyles'; // Import StatsPageStyles
+import StatsPageStyles from '../../assets/StatsPageStyles';
 
 const StatsPageView = ({ onPageChange }) => {
     return (
