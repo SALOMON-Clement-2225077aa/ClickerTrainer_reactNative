@@ -46,7 +46,7 @@ const updateStats = (chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgI
 
     const nbOfGames = globalStats.nbOfGames + 1;
     const totalClicks = globalStats.totalClicks + nbOfClicks;
-    const cpsHistory = [...globalStats.cpsHistory, cps];
+    const cpsHistory = [...globalStats.cpsHistory, parseFloat(cps)];
     const avgCps = (cpsHistory.reduce((total, cps) => total + cps, 0) / cpsHistory.length).toFixed(2);
     const bestCps = Math.max(...cpsHistory);
     const avgIntervalHistory = [...globalStats.avgIntervalHistory, parseFloat(avgInterval)];
