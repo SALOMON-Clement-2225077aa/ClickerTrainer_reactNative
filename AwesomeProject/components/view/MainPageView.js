@@ -6,13 +6,15 @@ import styles from '../../assets/MainPageStyles';
 const MainPageView = ({ onPageChange }) => {
     const [nbOfClicks, setNbOfClicks] = useState(0);
     const [timeRemaining, setTimeRemaining] = useState(10000);
-    const [timerStarted, setTimerStarted] = useState(false); // State to track if timer is started
+    const [timerStarted, setTimerStarted] = useState(false);
 
     // Gestion des clicks :
     const handleButtonClick = () => {
-        setNbOfClicks(nbOfClicks + 1);
         if (!timerStarted) {
             setTimerStarted(true);
+        }
+        if (timeRemaining !== 0) {
+            setNbOfClicks(nbOfClicks + 1);
         }
     };
 
@@ -23,17 +25,17 @@ const MainPageView = ({ onPageChange }) => {
         const millisecondsRemaining = milliseconds % 1000;
         return `${seconds.toString().padStart(2, '0')}.${millisecondsRemaining.toString().padStart(3, '0')}`;
     };
-
     useEffect(() => {
         let timer;
         if (timerStarted) {
             timer = setInterval(() => {
-                setTimeRemaining(prevTime => (prevTime > 0 ? prevTime - 10 : 0));
+                setTimeRemaining(prevTime => (prevTime > 0 ? prevTime - 17 : 0));
             }, 10);
         }
         return () => clearInterval(timer);
     }, [timerStarted]);
 
+    // Affichage :
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Temps restant : {formatTime(timeRemaining)}s</Text>
