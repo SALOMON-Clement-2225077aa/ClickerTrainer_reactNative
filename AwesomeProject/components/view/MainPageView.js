@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import Footer from './Footer';
-import styles from '../../assets/MainPageStyles';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import { Image } from 'react-native';
+
+import styles from '../../assets/stylesheets/MainPageStyles';
 import caouete from '../../assets/caouete.png';
+import Footer from './Footer';
 
 const MainPageView = ({ onPageChange }) => {
     const [nbOfClicks, setNbOfClicks] = useState(0);
+    const [chosenTime, setChosenTime] = useState(10);
     const [timeRemaining, setTimeRemaining] = useState(10000);
     const [timerStarted, setTimerStarted] = useState(false);
+    const [remainingTimes, setRemainingTimes] = useState([]);
 
     // Gestion des clicks :
     const handleButtonClick = () => {
         if (!timerStarted) {
             setTimerStarted(true);
         }
-        if (timeRemaining !== 0) {
+        if (timeRemaining > 0) {
             setNbOfClicks(nbOfClicks + 1);
+            setRemainingTimes([...remainingTimes, timeRemaining]);
         }
     };
 
@@ -35,14 +38,28 @@ const MainPageView = ({ onPageChange }) => {
                 setTimeRemaining(prevTime => (prevTime > 0 ? prevTime - 17 : 0));
             }, 10);
         }
+        if(timeRemaining <= 0) {
+            console.log('-----------');
+            console.log(chosenTime);
+            console.log(nbOfClicks);
+            console.log("CPS = ", nbOfClicks/chosenTime);
+            console.log(remainingTimes);
+            console.log('-----------');
+            setTimeRemaining(chosenTime * 1000);
+            setTimerStarted(false);
+            setNbOfClicks(0);
+            setRemainingTimes([]);
+        }
         return () => clearInterval(interval);
     }, [timerStarted]);
 
     // Gestion de la sélection de temps :
     const handleTimeSelection = (value) => {
+        setChosenTime(value);
         setTimeRemaining(value * 1000);
         setTimerStarted(false);
         setNbOfClicks(0);
+        setRemainingTimes([]);
     };
 
     return (
