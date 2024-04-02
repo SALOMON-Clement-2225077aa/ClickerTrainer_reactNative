@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import Footer from './Footer';
 import styles from '../../assets/MainPageStyles';
 import RNPickerSelect from 'react-native-picker-select';
+import { Image } from 'react-native';
+import caouete from '../../assets/caouete.png';
 
 const MainPageView = ({ onPageChange }) => {
     const [nbOfClicks, setNbOfClicks] = useState(0);
@@ -55,8 +57,11 @@ const MainPageView = ({ onPageChange }) => {
                 ]}
             />
             <Text style={styles.text}>Temps restant : {formatTime(timeRemaining)}s</Text>
-            <TouchableOpacity style={styles.circle} onPress={handleButtonClick}>
-                <Text style={styles.clickText}>Click</Text>
+            <TouchableOpacity onPress={handleButtonClick}>
+                <Image
+                    source={caouete}
+                    style={{ width: 200, height: 200 }} // taille de la caouete :3
+                />
             </TouchableOpacity>
             <Text style={styles.text}>Nombre de clics : {nbOfClicks}</Text>
             <Footer onPageChange={onPageChange} activePage="main" />
