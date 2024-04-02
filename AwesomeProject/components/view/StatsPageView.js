@@ -23,19 +23,19 @@ const StatsPageView = ({ onPageChange }) => {
             <View style={StatsPageStyles.container}>
                     <Text style={StatsPageStyles.title}>Stats sur la dernière game :</Text>
                     <Text style={StatsPageStyles.text}>- Temps choisi : {lastGameStats.chosenTime}s</Text>
-                    <Text style={StatsPageStyles.text}>- Nombre de clicks : {lastGameStats.totalClicks}</Text>
-                    <Text style={StatsPageStyles.text}>- Clics par seconde : {lastGameStats.CPS}</Text>
-                    <Text style={StatsPageStyles.text}>- Plus petit espace entre 2 clics : {lastGameStats.minInterval}</Text>
-                    <Text style={StatsPageStyles.text}>- Plus grand espace entre 2 clics : {lastGameStats.maxInterval}</Text>
-                    <Text style={StatsPageStyles.text}>- Temps moyen entre 2 clics : {lastGameStats.avgInterval}</Text>
+                    <Text style={StatsPageStyles.text}>- Nombre de clics : {lastGameStats.totalClicks}</Text>
+                    <Text style={StatsPageStyles.text}>- CPS : {lastGameStats.CPS}</Text>
+                    <Text style={StatsPageStyles.text}>- Plus petit espace entre 2 clics : {lastGameStats.minInterval}ms</Text>
+                    <Text style={StatsPageStyles.text}>- Plus grand espace entre 2 clics : {lastGameStats.maxInterval}ms</Text>
+                    <Text style={StatsPageStyles.text}>- Temps moyen entre 2 clics : {lastGameStats.avgInterval}ms</Text>
 
                     <Text style={StatsPageStyles.title}>Stats globales :</Text>
                     <Text style={StatsPageStyles.text}>- Nombre de parties : {globalStats.nbOfGames}</Text>
                     <Text style={StatsPageStyles.text}>- Nombre de clics : {globalStats.totalClicks}</Text>
-                    <Text style={StatsPageStyles.text}>- Clics moyen par seconde : {globalStats.avgCps}</Text>
+                    <Text style={StatsPageStyles.text}>- CPS moyen : {globalStats.avgCps}</Text>
                     <Text style={StatsPageStyles.text}>- Meilleur CPS : {globalStats.bestCps}</Text>
-                    <Text style={StatsPageStyles.text}>- Temps moyen entre 2 clics : {globalStats.avgInterval}</Text>
-                    <Text style={StatsPageStyles.text}>- Plus petit espace entre 2 clics : {globalStats.minInterval}</Text>
+                    <Text style={StatsPageStyles.text}>- Temps moyen entre 2 clics : {globalStats.avgInterval}ms</Text>
+                    <Text style={StatsPageStyles.text}>- Plus petit espace entre 2 clics : {globalStats.minInterval}ms</Text>
 
                     <Footer onPageChange={onPageChange} activePage="stats" />
             </View>

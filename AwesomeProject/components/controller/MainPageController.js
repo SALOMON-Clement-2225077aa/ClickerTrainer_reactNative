@@ -7,10 +7,11 @@ export const gameEndedEvent = (chosenTime, nbOfClicks, remainingTimes) => {
     const cps = nbOfClicks / chosenTime;
 
     // Transformation de la liste remainingTimes en liste d'intervalles
-    const intervals = [];
+    let intervals = [];
     for (let i = 0; i < remainingTimes.length - 1; i++) {
         intervals.push(remainingTimes[i] - remainingTimes[i + 1]);
     }
+    intervals = intervals.slice(1);
 
     // Calcul de la plus petite valeur, la plus grande valeur et la moyenne des intervalles
     const minInterval = Math.min(...intervals);
@@ -36,8 +37,21 @@ const log = (chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgInterval,
 
 // Envoie les données au model
 const updateStats = (chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgInterval, intervals) => {
+
     // Update last game stats
     StatsModel.updateLastGameStats(chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgInterval, intervals);
+
     // Update global stats
-    // StatsModel.updateGlobalStats(nbOfGames, totalClicks, avgCps, bestCps, avgInterval, minInterval);
+    let globalStats = StatsModel.globalStats;
+
+    const nbOfGames = globalStats.nbOfGames + 1;
+    const totalClicks = globalStats.totalClicks + nbOfClicks;
+    const cpsHistory = [...globalStats.cpsHistory, cps];
+    const avgCps = globalStats.cpsHistory.reduce((total, cps) => total + cps, 0) / cpsHistory.length;
+    const bestCps = Math.max(...cpsHistory);
+    const avgIntervalHistory = [...globalStats.avgIntervalHistory, avgInterval];
+    const avgTotalInterval = avgIntervalHistory.reduce((acc, val) => acc + val, 0) / avgIntervalHistory.length;
+    const minTotalInterval = Math.min(...intervals);
+    StatsModel.updateGlobalStats(nbOfGames, totalClicks, cpsHistory,
+        avgCps, bestCps, avgIntervalHistory, avgTotalInterval, minTotalInterval);
 };

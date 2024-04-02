@@ -53,17 +53,23 @@ const StatsModel = {
     },
 
     // Met à jour les statistiques globales
-    updateGlobalStats: function(nbOfGames, totalClicks, avgCps, bestCps, avgInterval, minInterval) {
+    updateGlobalStats: function(nbOfGames, totalClicks, cpsHistory, avgCps, bestCps, avgIntervalHistory, avgInterval, minInterval) {
         this.globalStats = {
             nbOfGames,
             totalClicks,
+            cpsHistory,
             avgCps,
             bestCps,
+            avgIntervalHistory,
             avgInterval,
             minInterval,
         };
         this.notifySubscribers();
     },
+
+    getGlobalStats: function () {
+        return this.globalStats;
+    }
 };
 
 export default StatsModel;
