@@ -5,7 +5,7 @@ const StatsPageStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#686868',
         paddingHorizontal: 20,
-        paddingTop: 25,
+        paddingTop: 20,
     },
     title: {
         fontSize: 20,
@@ -13,7 +13,7 @@ const StatsPageStyles = StyleSheet.create({
         textDecorationLine: 'underline',
         color: 'white',
         marginBottom: 10,
-        paddingTop: 50,
+        paddingTop: 25,
     },
     text: {
         fontSize: 16,

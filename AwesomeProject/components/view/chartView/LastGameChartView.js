@@ -14,9 +14,10 @@ const LastGameChartLine = ({ data }) => {
     return (
         <View>
             <LineChart
-                data={{ datasets: [{ data }] }}
+                data={{ labels:["                                                                                " +
+                    "Intervalle entre les clics en fonction du temps"],datasets: [{ data }] }}
                 width={350}
-                height={220}
+                height={180}
                 chartConfig={{
                     backgroundColor: '#686868',
                     backgroundGradientFrom: '#707070',
