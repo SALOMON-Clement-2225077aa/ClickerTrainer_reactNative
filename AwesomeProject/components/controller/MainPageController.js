@@ -1,3 +1,5 @@
+import StatsModel from '../../model/StatsModel'; // Import the StatsModel
+
 // A la fin du chrono les données sont envoyé ici :
 export const gameEndedEvent = (chosenTime, nbOfClicks, remainingTimes) => {
 
@@ -15,6 +17,12 @@ export const gameEndedEvent = (chosenTime, nbOfClicks, remainingTimes) => {
     const maxInterval = Math.max(...intervals);
     const avgInterval = (intervals.reduce((acc, val) => acc + val, 0) / intervals.length).toFixed(2);
 
+    log(chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgInterval, intervals);
+    updateStats(chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgInterval, intervals);
+};
+
+// Pour afficher les stast dans la console
+const log = (chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgInterval, intervals) => {
     console.log('-----GameInfos-----');
     console.log("Chosen time: ", chosenTime);
     console.log("Nb of clicks: ", nbOfClicks);
@@ -24,4 +32,12 @@ export const gameEndedEvent = (chosenTime, nbOfClicks, remainingTimes) => {
     console.log('Average Interval:', avgInterval);
     console.log(intervals);
     console.log('-------------------');
+};
+
+// Envoie les données au model
+const updateStats = (chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgInterval, intervals) => {
+    // Update last game stats
+    StatsModel.updateLastGameStats(chosenTime, nbOfClicks, cps, minInterval, maxInterval, avgInterval, intervals);
+    // Update global stats
+    // StatsModel.updateGlobalStats(nbOfGames, totalClicks, avgCps, bestCps, avgInterval, minInterval);
 };
