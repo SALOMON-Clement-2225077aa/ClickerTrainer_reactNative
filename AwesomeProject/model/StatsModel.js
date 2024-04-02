@@ -66,10 +66,6 @@ const StatsModel = {
         };
         this.notifySubscribers();
     },
-
-    getGlobalStats: function () {
-        return this.globalStats;
-    }
 };
 
 export default StatsModel;

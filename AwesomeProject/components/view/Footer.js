@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const Footer = ({ onPageChange, activePage }) => { // Pass onPageChange as prop
+const Footer = ({ onPageChange, activePage }) => {
     return (
         <View style={styles.footer}>
             <TouchableOpacity onPress={() => onPageChange('main')} style={styles.icon}>
