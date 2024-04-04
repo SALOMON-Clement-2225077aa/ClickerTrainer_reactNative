@@ -17,20 +17,20 @@ const MainPageView = ({ onPageChange }) => {
 
     // Gestion des clicks :
     const handleButtonClick = () => {
-        if (!timerStarted) {
+        if (!timerStarted && timeRemaining>0) {
             setTimerStarted(true);
         }
         if (timeRemaining > 0) {
             setNbOfClicks(nbOfClicks + 1);
             setRemainingTimes([...remainingTimes, timeRemaining]);
         }
-        if(timeRemaining <= 0) {
+        if(timeRemaining <= 0 && nbOfClicks>0) {
             gameEndedEvent(chosenTime, nbOfClicks, remainingTimes);
-            onPageChange('stats');
             setTimeRemaining(chosenTime * 1000);
             setTimerStarted(false);
             setNbOfClicks(0);
             setRemainingTimes([]);
+            onPageChange('stats')
         }
     };
 
