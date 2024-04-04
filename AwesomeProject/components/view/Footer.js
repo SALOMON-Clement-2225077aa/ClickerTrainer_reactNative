@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         backgroundColor: '#444',
+        borderTopColor: '#666',
+        borderTopWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
