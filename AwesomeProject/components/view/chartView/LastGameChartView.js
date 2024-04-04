@@ -19,9 +19,9 @@ const LastGameChartLine = ({ data }) => {
                 width={350}
                 height={180}
                 chartConfig={{
-                    backgroundColor: '#686868',
-                    backgroundGradientFrom: '#707070',
-                    backgroundGradientTo: '#707070',
+                    backgroundColor: '#333',
+                    backgroundGradientFrom: '#333',
+                    backgroundGradientTo: '#333',
                     decimalPlaces: 0,
                     color: (opacity = 1) => `rgba(0, 191, 99, ${opacity})`,
                 }}

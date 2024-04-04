@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const MainPageStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#686868',
+        backgroundColor: '#333',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -45,6 +45,8 @@ const MainPageStyles = StyleSheet.create({
         color: 'white',
         fontSize: 500,
     }
+
+
 });
 
 export default MainPageStyles;

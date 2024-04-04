@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 const StatsPageStyles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#686868',
+        backgroundColor: '#333',
         paddingHorizontal: 20,
         paddingTop: 20,
     },
